@@ -98,8 +98,11 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 **Install system components**  
 `su shino`  
 
+**Fonts**
+`sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-extra noto-fonts-emoji ttf-liberation ttf-dejavu ttf-roboto ttf-inconsolata ttf-font-awesome ttf-ubuntu-font-family`
+
 **Essentials**  
-`sudo pacman -S noto-fonts zip unzip tar unrar wget htop clang cmake git python openssh npm pacman-contrib firefox alacritty linux-headers`  
+`sudo pacman -S zip unzip tar unrar wget htop clang cmake git python openssh npm pacman-contrib firefox alacritty linux-headers bash-completion pkgconfig autoconf automake man`  
 
 **Programming related**  
 `sudo pacman -S neovim rustup go docker docker-compose`  
@@ -118,13 +121,10 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `sudo systemctl enable bumblebeed.service`  
 
 **Applications**  
-`sudo pacman -S code thunar thunderbird discord signal-desktop exa`  
+`sudo pacman -S code thunar thunderbird discord signal-desktop exa intellij-idea-community-edition`  
 
 **Window manager**  
-`sudo pacman -S sway swayidle swaylock swaybg waybar brightnessctl wofi bemenu`
-
-**Login screen**  
-`sudo pacman -S lightdm-webkit-theme-litarvan`  
+`sudo pacman -S sway swayidle swaylock swaybg waybar brightnessctl`
 
 **Yay**  
 `cd`  
@@ -136,8 +136,34 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `rm -rf yay`  
 
 **Aur packages**  
-`yay -S slack-desktop`  
+`yay -S slack-desktop wofi ttf-d2coding ttf-muli`  
 
-#TODO
-/etc/lightdm/lightdm.conf
-/etc/lightdm/lightdm-webkit2-greeter.conf
+**Required for brightnessctl to work**  
+`sudo chmod u+s /usr/bin/brightnessctl`
+
+**Placing dotfile**  
+`cd`  
+`mkdir .config`  
+`git clone https://github.com/Geigerkind/archlinux-sway-setup`  
+`cd archlinux-sway-setup`  
+`cp -r sway/ ./.config/`  
+`cp -r wofi/ ./.config/`  
+`cp -r alacritty/ ./.config/`  
+`cp -r sway/ ./.config/`  
+`cp -r nvim/ ./.config/`  
+`mkdir /etc/systemd/system/getty@tty1.service.d/`  
+`sudo cp override.conf /etc/systemd/system/getty@tty1.service.d/`  
+`sudo cp environment /etc/environment`  
+
+**Installing Neobundle**  
+`cd`  
+`curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh`  
+`bash install.sh`  
+`rm install.sh`  
+`cd ..`  
+
+**Creating directories in home**  
+`cd`  
+`mkdir Repos`  
+`mkdir Work`  
+`mkdir Screenshots`  
