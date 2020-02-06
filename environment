@@ -1,0 +1,20 @@
+#
+# This file is parsed by pam_env module
+#
+# Syntax: simple "KEY=VAL" pairs on separate lines
+#
+
+KEYMAP=de-latin1
+_JAVA_AWT_WM_NONREPARENTING=1
+EDITOR='nvim'
+VISUAL='nvim'
+MOZ_ENABLE_WAYLAND=1
+#MOZ_WEBRENDER=1
+WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1
+#WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card2
+SWAYSHOT_SCREENSHOTS="/home/shino/Screenshots"
+SWAYSHOT_DATEFMT="%F-%H-%M-%S"
+QT_QPA_PLATFORM=wayland-eql
+CLUTTER_BACKEND=wayland
+SDL_VIDEODRIVER=wayland
+CLUTTER_PAINT=disable-clipped-redraws:disable-culling
