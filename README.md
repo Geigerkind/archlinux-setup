@@ -102,7 +102,11 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-extra noto-fonts-emoji ttf-liberation ttf-dejavu ttf-roboto ttf-inconsolata ttf-font-awesome ttf-ubuntu-font-family`
 
 **Essentials**  
-`sudo pacman -S zip unzip tar unrar wget htop clang cmake git python openssh npm pacman-contrib firefox alacritty linux-headers bash-completion pkgconfig autoconf automake man`  
+`sudo pacman -S zip unzip tar unrar wget htop clang cmake git python openssh npm pacman-contrib firefox alacritty linux-headers bash-completion pkgconfig autoconf automake man p7zip bzip2 zstd xz gzip`  
+
+**Java**  
+`jre-openjdk jdk-openjdk`
+`sudo archlinux-java set java-13-openjdk`
 
 **Programming related**  
 `sudo pacman -S neovim rustup go docker docker-compose`  
@@ -116,7 +120,7 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `sudo systemctl enable NetworkManager`  
 
 **Graphics**  
-`sudo pacman -S bumblebee mesa xf86-video-intel nvidia-dkms`  
+`sudo pacman -S bumblebee mesa xf86-video-intel nvidia-dkms qt5-wayland clutter glfw-wayland glew-wayland`  
 `sudo gpasswd -a shino bumblebee` // Hybrid graphics only  
 `sudo systemctl enable bumblebeed.service`  
 
@@ -135,8 +139,11 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `cd ..`  
 `rm -rf yay`  
 
+**Decreasing makepkg compile time**  
+`sudo sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j12"/g' /etc/makepkg.conf`
+
 **Aur packages**  
-`yay -S slack-desktop wofi ttf-d2coding ttf-muli`  
+`yay -S slack-desktop wofi ttf-d2coding ttf-muli intellij-idea-ultimate-edition firefox-beta-bin swayshot`  
 
 **Required for brightnessctl to work**  
 `sudo chmod u+s /usr/bin/brightnessctl`
@@ -144,15 +151,24 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 **Placing dotfile**  
 `cd`  
 `mkdir .config`  
+`cd .config`  
+`mkdir sway`  
+`mkdir wofi`  
+`mkdir alacritty`  
+`mkdir waybar`  
 `git clone https://github.com/Geigerkind/archlinux-sway-setup`  
 `cd archlinux-sway-setup`  
-`cp -r sway/ ./.config/`  
-`cp -r wofi/ ./.config/`  
-`cp -r alacritty/ ./.config/`  
-`cp -r sway/ ./.config/`  
-`cp -r nvim/ ./.config/`  
+`ln -s ./sway/config ~/.config/sway/config`  
+`ln -s ./wofi/style.css ~/.config/wofi/style.css`  
+`ln -s ./waybar/style.css ~/.config/waybar/style.css`  
+`ln -s ./waybar/config ~/.config/waybar/config`  
+`ln -s ./nvim ~/.config/nvim`  
+`ln -s ./alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml`  
+`ln -s ./swayshot.sh ~/.config/swayshot.sh`  
 `mkdir /etc/systemd/system/getty@tty1.service.d/`  
 `sudo cp override.conf /etc/systemd/system/getty@tty1.service.d/`  
+`mkdir /etc/systemd/system/getty@tty2.service.d/`  
+`sudo cp override.conf /etc/systemd/system/getty@tty2.service.d/`  
 `sudo cp environment /etc/environment`  
 
 **Installing Neobundle**  
@@ -167,3 +183,8 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `mkdir Repos`  
 `mkdir Work`  
 `mkdir Screenshots`  
+
+**Disabling other users processes in top etc.**  
+`sudo -s`  
+`echo "proc /proc proc defaults,nosuid,nodev,noexec,relatime,hidepid=2 0 0" >> /etc/fstab`  
+`exit`  
