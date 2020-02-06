@@ -165,10 +165,9 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `ln -s ./nvim ~/.config/nvim`  
 `ln -s ./alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml`  
 `ln -s ./swayshot.sh ~/.config/swayshot.sh`  
-`mkdir /etc/systemd/system/getty@tty1.service.d/`  
-`sudo cp override.conf /etc/systemd/system/getty@tty1.service.d/`  
-`mkdir /etc/systemd/system/getty@tty2.service.d/`  
-`sudo cp override.conf /etc/systemd/system/getty@tty2.service.d/`  
+`ln -s ./.bashrc ~/.bashrc`  
+`sudo cp -r getty@tty1.service.d/ /etc/systemd/system/`  
+`sudo cp -r getty@tty2.service.d/ /etc/systemd/system/`  
 `sudo cp environment /etc/environment`  
 
 **Installing Neobundle**  
