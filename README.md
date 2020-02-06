@@ -2,7 +2,7 @@
 
 # Introduction
 This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
-* Disble Secure-Boot and Fast startup
+* Disable Secure-Boot and Fast startup
 * Shrink disk volume if you want to dual boot windoof
 
 # Installation
