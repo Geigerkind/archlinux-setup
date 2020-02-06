@@ -1,3 +1,5 @@
+![Example](screenshot.png)
+
 # Introduction
 This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 * Disble Secure-Boot and Fast startup
