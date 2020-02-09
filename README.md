@@ -37,8 +37,8 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 
 **Format all disks**  
 `mkfs.ext4 /dev/nvme0n1p5` // In my case 1-4 is taken up by windoof  
-`mkfs.ext4 /dev/nvme0n1p6`
-`mkfs.ext4 /dev/nvme0n1p8`
+`mkfs.ext4 /dev/nvme0n1p6`  
+`mkfs.ext4 /dev/nvme0n1p8`  
 
 **Setup swap**  
 `mkswap /dev/nvme0n1p7`  
@@ -107,7 +107,7 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `sudo pacman -S zip unzip tar unrar wget htop clang cmake git python openssh npm pacman-contrib firefox alacritty linux-headers bash-completion pkgconfig autoconf automake man p7zip bzip2 zstd xz gzip`  
 
 **Java**  
-`jre-openjdk jdk-openjdk`
+`sudo pacman -S jre-openjdk jdk-openjdk`  
 `sudo archlinux-java set java-13-openjdk`
 
 **Programming related**  
@@ -118,11 +118,11 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `sudo pacman -S alsa-utils pulseaudio pavucontrol`  
 
 **Network**  
-`sudo pacman -S networkmanager`  
+`sudo pacman -S networkmanager dhcpcd`  
 `sudo systemctl enable NetworkManager`  
 
 **Graphics**  
-`sudo pacman -S bumblebee mesa xf86-video-intel nvidia-dkms qt5-wayland clutter glfw-wayland glew-wayland`  
+`sudo pacman -S bumblebee mesa xf86-video-intel nvidia-dkms qt5-wayland clutter glfw-wayland glew-wayland mesa vulkan-radeon libva-mesa-driver mesa-vdpau`  
 `sudo gpasswd -a shino bumblebee` // Hybrid graphics only  
 `sudo systemctl enable bumblebeed.service`  
 
@@ -160,17 +160,18 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `mkdir waybar`  
 `git clone https://github.com/Geigerkind/archlinux-sway-setup`  
 `cd archlinux-sway-setup`  
-`ln -s ./sway/config ~/.config/sway/config`  
-`ln -s ./wofi/style.css ~/.config/wofi/style.css`  
-`ln -s ./waybar/style.css ~/.config/waybar/style.css`  
-`ln -s ./waybar/config ~/.config/waybar/config`  
-`ln -s ./nvim ~/.config/nvim`  
-`ln -s ./alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml`  
-`ln -s ./swayshot.sh ~/.config/swayshot.sh`  
-`ln -s ./.bashrc ~/.bashrc`  
+`ln -s ~/.config/archlinux-sway-setup/sway/config ~/.config/sway/config`  
+`ln -s ~/.config/archlinux-sway-setup/wofi/style.css ~/.config/wofi/style.css`  
+`ln -s ~/.config/archlinux-sway-setup/waybar/style.css ~/.config/waybar/style.css`  
+`ln -s ~/.config/archlinux-sway-setup/waybar/config ~/.config/waybar/config`  
+`ln -s ~/.config/archlinux-sway-setup/nvim ~/.config/nvim`  
+`ln -s ~/.config/archlinux-sway-setup/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml`  
+`ln -s ~/.config/archlinux-sway-setup/swayshot.sh ~/.config/swayshot.sh`  
+`ln -s ~/.config/archlinux-sway-setup/.bashrc ~/.bashrc`  
 `sudo cp -r getty@tty1.service.d/ /etc/systemd/system/`  
 `sudo cp -r getty@tty2.service.d/ /etc/systemd/system/`  
 `sudo cp environment /etc/environment`  
+`sud cp ~/.config/archlinux-sway-setup/backgrounds/* /usr/share/backgrounds/`  
 
 **Installing Neobundle**  
 `cd`  
