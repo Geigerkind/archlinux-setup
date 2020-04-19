@@ -1,0 +1,21 @@
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-focused = %index%
+label-focused-foreground = ${colors.nord-blue-light}
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-foreground = ${colors.white}
+label-unfocused-padding = 1
+
+label-visible = %index%
+label-visible-foreground = ${self.label-focused-foreground}
+label-visible-padding = ${self.label-focused-padding}
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.danger}
+label-urgent-padding = ${self.label-focused-padding}

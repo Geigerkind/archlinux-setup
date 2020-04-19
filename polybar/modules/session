@@ -1,0 +1,7 @@
+[module/session]
+type = custom/script
+
+click-left = obsession-logout -p ""
+exec = echo %{T3} 襤 %{T-}
+format-background = ${colors.nord-red}
+format-foreground = ${colors.white}

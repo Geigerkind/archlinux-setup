@@ -1,0 +1,9 @@
+[module/memory]
+type = internal/memory
+interval = 1
+
+format-padding = 1
+format-prefix = %{T3}﬙%{T-}
+format-prefix-foreground = ${colors.nord-blue-light}
+label = " %percentage_used%%"
+label-foreground = ${colors.nord-blue-light}

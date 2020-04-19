@@ -1,0 +1,9 @@
+[module/cpu]
+type = internal/cpu
+interval = 1
+
+format-padding = 1
+format-prefix = %{T3}%{T-}
+format-prefix-foreground = ${colors.nord-yellow}
+label = " %percentage:2%%"
+label-foreground = ${colors.nord-yellow}
