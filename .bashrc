@@ -2,14 +2,19 @@
 # ~/.bashrc
 #
 
+# Sway
+alias swayMonitor="swaymsg output HDMI-A-1 pos 0 0 && swaymsg output DP-2 pos 2560 0 && swaymsg output HDMI-A-2 pos 5120 0"
+
 # Desktop Work
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-    sway
+    sources /home/shino/.config/archlinux-sway-setup/environment
+    sway --my-next-gpu-wont-be-nvidia
+    swayMonitor
 fi
 
 # Desktop Private
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty2 ]]; then
-    sway
+    startx
 fi
 
 # If not running interactively, don't do anything
@@ -86,17 +91,30 @@ function ex() {
     fi
 }
 
+function mntSambaLocal {
+    sudo mkdir /mnt/samba
+    read -s -p "Password: " PASSWORD
+    sudo mount -t cifs -o username=tom,password=${PASSWORD},uid=shino //192.168.178.200/nas /mnt/samba
+}
+
+function mntSambaExtern {
+    sudo mkdir /mnt/samba
+    read -s -p "Password: " PASSWORD
+    sudo mount -t cifs -o username=tom,password=${PASSWORD},uid=shino //nas0.ddnss.de/nas /mnt/samba
+}
+
+function setSUID() {
+    sudo chmod u+s /usr/bin/sway
+    sudo chmod u+s /usr/bin/reboot
+    sudo chmod u+s /usr/bin/poweroff
+    sudo chmod u+s /usr/bin/modprobe
+}
+
 export PS1="\t: \[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h\[\e[m\]: \[\e[31m\]\W\[\e[m\] \[\e[35m\]\`parse_git_branch\`\[\e[m\]\\$ \n"
 
-# Work
-# Medios Digital
-alias md_dc_up="sudo docker-compose up db"
-alias md_dc_redo="sudo docker system prune && sudo docker volume prune && sudo docker-compose up --build db"
-alias md_cd="cd ~/Work/medios-connect-2.0"
-alias md_permit_testcontainer="sudo chmod 770 /var/run/docker.sock"
 
 # Docker
-alias dcRebuildF="docker system prune && docker volume prune && docker-compose up --build"
+alias dcRebuildF="sudo docker system prune -a && sudo docker volume prune && sudo docker-compose up --build"
 
 # Util
 alias ls='exa'
@@ -104,7 +122,7 @@ alias ll='ls -l'
 alias df='df -h'
 alias del='yay -Rs'
 alias clean='yay -Scc'
-alias update='yay -Syu'
+alias update='yay -Syu && setSUID'
 alias lk='sudo loadkeys de-latin1'
 alias mnt='sudo mount'
 alias umnt='sudo umount'
@@ -125,6 +143,7 @@ alias gstatus='git status'
 alias gclone='git clone'
 alias gpull='git pull'
 alias gstash='git stash'
+alias statuus='status'
 
 # System Util
 alias grubRedoConfig='sudo grub-mkconfig -o /boot/grub/grub.cfg'
