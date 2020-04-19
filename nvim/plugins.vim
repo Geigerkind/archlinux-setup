@@ -29,6 +29,7 @@ NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'kristijanhusak/vim-hybrid-material'
 NeoBundle 'mboughaba/i3config.vim'
 NeoBundle 'godlygeek/tabular'
+NeoBundle 'lervag/vimtex'
 
 call neobundle#end()
 filetype plugin indent on

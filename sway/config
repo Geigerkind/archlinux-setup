@@ -23,7 +23,7 @@ set $menu $dmenu_path | wofi --dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-output * bg /usr/share/backgrounds/anime_your_lie_in_april.jpg fill scale 2
+output * bg /usr/share/backgrounds/anime_your_lie_in_april.jpg fill
 #
 # Example configuration:
 #
@@ -36,8 +36,8 @@ output * bg /usr/share/backgrounds/anime_your_lie_in_april.jpg fill scale 2
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 420 'swaylock -f -i /usr/share/backgrounds/anime_epic2.jpg' \
-         timeout 360 'swaymsg "output * dpms off"' \
+         timeout 1200 'swaylock -f -i /usr/share/backgrounds/anime_epic2.jpg' \
+         timeout 1100 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -i /usr/share/backgrounds/anime_epic2.jpg'
 #
@@ -238,4 +238,5 @@ bindsym $mod+f11 exec swayshot
 bindsym $mod+f10 exec swayshot window
 bindsym $mod+f9 exec swayshot region
 
+exec dhcpcd
 exec swaylock -f -i /usr/share/backgrounds/anime_epic2.jpg

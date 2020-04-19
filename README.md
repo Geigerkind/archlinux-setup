@@ -132,6 +132,9 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 **Window manager**  
 `sudo pacman -S sway swayidle swaylock swaybg waybar brightnessctl`
 
+**LATEX**  
+`sudo pacman -S texlive-most`
+
 **Yay**  
 `cd`  
 `git clone https://aur.archlinux.org/yay.git`  
@@ -145,7 +148,7 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `sudo sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j12"/g' /etc/makepkg.conf`
 
 **Aur packages**  
-`yay -S slack-desktop wofi ttf-d2coding ttf-muli intellij-idea-ultimate-edition firefox-beta-bin swayshot`  
+`yay -S slack-desktop wofi ttf-d2coding ttf-muli intellij-idea-ultimate-edition firefox-beta-bin swayshot nerd-fonts-source-code-pro`  
 
 **Required for brightnessctl to work**  
 `sudo chmod u+s /usr/bin/brightnessctl`
@@ -189,4 +192,8 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 **Disabling other users processes in top etc.**  
 `sudo -s`  
 `echo "proc /proc proc defaults,nosuid,nodev,noexec,relatime,hidepid=2 0 0" >> /etc/fstab`  
-`exit`  
+`exit` 
+
+**Sources:**  
+* https://github.com/Murzchnvok/polybar-nord  
+* https://github.com/Murzchnvok/nord-rofi-theme  

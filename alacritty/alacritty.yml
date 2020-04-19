@@ -186,7 +186,7 @@ font:
 #colors:
   # Default colors
   #primary:
-  #  background: '0x000000'
+  #background: '0x3B4252'
   #  foreground: '0xeaeaea'
 
     # Bright and dim foreground colors
