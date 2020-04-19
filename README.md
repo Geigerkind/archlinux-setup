@@ -148,7 +148,7 @@ This example is a dual boot Lenovo Thinkpad X1 Extreme. Prior to installation:
 `sudo sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j12"/g' /etc/makepkg.conf`
 
 **Aur packages**  
-`yay -S slack-desktop wofi ttf-d2coding ttf-muli intellij-idea-ultimate-edition firefox-beta-bin swayshot nerd-fonts-source-code-pro`  
+`yay -S slack-desktop wofi ttf-d2coding ttf-muli intellij-idea-ultimate-edition firefox-beta-bin swayshot nerd-fonts-source-code-pro i3lock-fancy-multimonitor`  
 
 **Required for brightnessctl to work**  
 `sudo chmod u+s /usr/bin/brightnessctl`
