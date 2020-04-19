@@ -3,6 +3,7 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+pin-workspaces = true
 
 label-focused = %index%
 label-focused-foreground = ${colors.nord-blue-light}
