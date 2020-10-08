@@ -48,4 +48,29 @@ done;
 
 See win10.conf and qemu.conf for configurations.
 
+## LookingGlass
+Install following packages: 
+`pacman -Syu binutils sdl2 sdl2_ttf libx11 nettle fontconfig cmake spice-protocol gnu-free-fonts`
+  
+Download latest source from: `https://looking-glass.hostfission.com/downloads`
+  
+Compile and install the client binary.  
 
+Edit VM configs and add below devices:
+```
+<shmem name='looking-glass'>
+  <model type='ivshmem-plain'/>
+  <size unit='M'>32</size>
+</shmem>
+```
+Add a spice server and a Video Device with "none" to the VM configs.
+
+
+Make sure that the VM Bios does not have Secure Boot enabled.
+
+Install IVSHMEM Driver:
+`"Device Manager" -> "System Devices" -> "PCI standard RAM Controller"`
+Download it here: `https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/`
+
+Download and install the Windows LookingGlass client from:
+`https://looking-glass.hostfission.com/downloads`
