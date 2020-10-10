@@ -40,6 +40,10 @@ done;
 * CPU Pinning
 * Huge pages
 
+## Nvidia Error 43
+Pascal graphic cards make problems. To resolve it change the vendor id, hide kvm and provide a ROM.  
+https://github.com/Matoking/NVIDIA-vBIOS-VFIO-Patcher
+
 ## Nett to Know
 * Get virtio driver and install them for mouse, keyboard and storage
 * Install Win10 as Pro version, cause else you cant make an offline account

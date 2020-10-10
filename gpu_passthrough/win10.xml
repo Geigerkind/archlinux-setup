@@ -15,7 +15,7 @@ or other application using the libvirt API.
   </metadata>
   <memory unit='KiB'>12386304</memory>
   <currentMemory unit='KiB'>12386304</currentMemory>
-  <vcpu placement='static'>16</vcpu>
+  <vcpu placement='static'>8</vcpu>
   <os>
     <type arch='x86_64' machine='pc-q35-5.1'>hvm</type>
     <loader readonly='yes' type='pflash'>/usr/share/edk2-ovmf/x64/OVMF_CODE.fd</loader>
@@ -29,7 +29,6 @@ or other application using the libvirt API.
       <relaxed state='on'/>
       <vapic state='on'/>
       <spinlocks state='on' retries='8191'/>
-      <vendor_id state='on' value='blablablabla'/>
     </hyperv>
     <kvm>
       <hidden state='on'/>
@@ -37,8 +36,8 @@ or other application using the libvirt API.
     <vmport state='off'/>
   </features>
   <cpu mode='custom' match='exact' check='partial'>
-    <model fallback='allow'>EPYC</model>
-    <topology sockets='16' dies='1' cores='1' threads='1'/>
+    <model fallback='allow'>EPYC-IBPB</model>
+    <topology sockets='2' dies='1' cores='4' threads='1'/>
   </cpu>
   <clock offset='localtime'>
     <timer name='rtc' tickpolicy='catchup'/>
@@ -159,16 +158,27 @@ or other application using the libvirt API.
     </input>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
+    <graphics type='spice' autoport='yes'>
+      <listen type='address'/>
+      <image compression='off'/>
+      <gl enable='no' rendernode='/dev/dri/by-path/pci-0000:07:00.0-render'/>
+    </graphics>
     <sound model='ich9'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x1b' function='0x0'/>
     </sound>
+    <video>
+      <model type='none'/>
+    </video>
     <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
       <source>
         <address domain='0x0000' bus='0x08' slot='0x00' function='0x0'/>
       </source>
+      <rom bar='on' file='/home/shino/GPU_PASSTHROUGH/1070ti_rom.bin'/>
       <address type='pci' domain='0x0000' bus='0x08' slot='0x00' function='0x0'/>
     </hostdev>
     <hostdev mode='subsystem' type='pci' managed='yes'>
+      <driver name='vfio'/>
       <source>
         <address domain='0x0000' bus='0x08' slot='0x00' function='0x1'/>
       </source>
@@ -177,11 +187,20 @@ or other application using the libvirt API.
     <memballoon model='virtio'>
       <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
     </memballoon>
+    <shmem name='looking-glass'>
+      <model type='ivshmem-plain'/>
+      <size unit='M'>32</size>
+      <address type='pci' domain='0x0000' bus='0x06' slot='0x01' function='0x0'/>
+    </shmem>
   </devices>
   <qemu:commandline>
     <qemu:arg value='-object'/>
-    <qemu:arg value='input-linux,id=mouse1,evdev=/dev/input/event16'/>
+    <qemu:arg value='input-linux,id=mouse1,evdev=/dev/input/event15'/>
     <qemu:arg value='-object'/>
-    <qemu:arg value='input-linux,id=kbd1,evdev=/dev/input/event19,grab_all=on,repeat=on'/>
+    <qemu:arg value='input-linux,id=kbd1,evdev=/dev/input/event18,grab_all=on,repeat=on'/>
+    <qemu:arg value='-cpu'/>
+    <qemu:arg value='host,hv_time,kvm=off,hv_vendor_id=0123456789ab'/>
+    <qemu:arg value='-machine'/>
+    <qemu:arg value='q35,kernel_irqchip=on'/>
   </qemu:commandline>
 </domain>
